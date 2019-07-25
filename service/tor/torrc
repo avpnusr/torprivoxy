@@ -1,0 +1,3 @@
+SOCKSPort 0.0.0.0:9050
+ExitPolicy reject *:*
+BridgeRelay 0

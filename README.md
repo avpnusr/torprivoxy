@@ -5,7 +5,7 @@
 
 Image is built on docker infrastructure for x86 systems.
 
-Image is built on TinkerBoard (S) or Raspberry Pi for ARM systems.
+Image is built on TinkerBoard or Raspberry Pi for ARM systems.
 
 Find the suitable version for you in the [tags](https://hub.docker.com/r/avpnusr/torprivoxy/tags).
 

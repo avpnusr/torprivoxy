@@ -18,7 +18,7 @@ Versions in the latest image
 
 Healthcheck & Configs
 -----
-The container has a working healtcheck built in.
+The docker container has a working healtcheck built in.
 
 **torrc-configuration:**
 ```

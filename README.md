@@ -7,6 +7,8 @@ Image is built on docker infrastructure for x86 systems.
 
 Image is built on TinkerBoard or Raspberry Pi for ARM systems.
 
+Find the suitable version for you in the [tags](https://hub.docker.com/r/avpnusr/torprivoxy/tags).
+
 Kudos to [rdsubhas](https://hub.docker.com/r/rdsubhas/tor-privoxy-alpine) I used the tini and run based startup for services from his container.
 
 Versions in the latest image

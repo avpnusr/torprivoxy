@@ -7,7 +7,7 @@ RUN apk --update --no-cache add privoxy tor runit tini wget --repository http://
 
 COPY service /etc/service/
 
-HEALTHCHECK --interval=120s --timeout=15s --start-period=120s --retries=3 \
+HEALTHCHECK --interval=180s --timeout=15s --start-period=120s --retries=3 \
             CMD wget --no-check-certificate -e use_proxy=yes -e http_proxy=127.0.0.1:8118 --quiet --spider 'https://3g2upl4pq6kufc4m.onion' || exit 1
 
 ENTRYPOINT ["tini", "--"]

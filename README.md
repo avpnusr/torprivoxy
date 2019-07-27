@@ -3,9 +3,7 @@
 **TOR and Privoxy in docker container**
 ===
 
-Image is built on docker infrastructure for x86 systems.
-
-Image is built on TinkerBoard or Raspberry Pi for ARM systems.
+This repository has multiarch support and is regularly updated.
 
 Kudos to [rdsubhas](https://hub.docker.com/r/rdsubhas/tor-privoxy-alpine). I used the tini and run based startup for services from his container.
 

@@ -16,6 +16,8 @@ Healthcheck & Configs
 -----
 The docker container has a working healtcheck built in.
 
+To determine correct function, it verifies access to some *.onion adresses.
+
 **torrc-configuration:**
 ```
 SOCKSPort 0.0.0.0:9050

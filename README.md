@@ -5,7 +5,8 @@
 
 This repository has multiarch support and is regularly updated.
 
-Kudos to [rdsubhas](https://hub.docker.com/r/rdsubhas/tor-privoxy-alpine). I used the tini and run based startup for services from his container.
+Kudos to [rdsubhas](https://hub.docker.com/r/rdsubhas/tor-privoxy-alpine).   
+I used the tini and run based startup for services from his container.
 
 Versions in the latest image
 -----

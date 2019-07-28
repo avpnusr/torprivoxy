@@ -3,7 +3,8 @@
 **TOR and Privoxy in docker container**
 ===
 
-This repository has multiarch support and is regularly updated.
+This repository has multiarch support and is regularly updated.    
+AMD64, ARM and ARM64 are supported archs for the container.
 
 Kudos to [rdsubhas](https://hub.docker.com/r/rdsubhas/tor-privoxy-alpine).   
 I used the tini and run based startup for services from his container.

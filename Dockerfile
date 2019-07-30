@@ -3,7 +3,7 @@ MAINTAINER avpnusr
 
 EXPOSE 8118 9050
 
-RUN apk --update --no-cache add privoxy tor runit tini wget --repository http://dl-3.alpinelinux.org/alpine/edge/testing/
+RUN apk --update --no-cache add privoxy tor runit tini wget --repository http://dl-3.alpinelinux.org/alpine/edge/community/
 
 COPY service /etc/service/
 

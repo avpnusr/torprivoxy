@@ -3,7 +3,7 @@
 **TOR and Privoxy in docker container**
 ===
 
-This repository has multiarch support and is regularly updated.    
+This repository has multi architecture support and is regularly updated.    
 Container is built for amd64, arm and arm64.
 
 Kudos to [rdsubhas](https://hub.docker.com/r/rdsubhas/tor-privoxy-alpine).   

@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:edge
 MAINTAINER avpnusr
 
 EXPOSE 8118 9050

@@ -44,5 +44,6 @@ On port **[9050]**, the container offers the TOR SOCKS5 proxy
 docker run -d \
   -p 8118:8118 \
   -p 9050:9050 \
+  --name torprivoxy \
   --restart=unless-stopped avpnusr/torprivoxy
 ```

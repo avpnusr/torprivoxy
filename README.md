@@ -12,7 +12,7 @@ I used the tini and run based startup for services from his container.
 Versions in the latest image
 -----
 - [TOR](https://www.torproject.org/ "TOR Project Homepage") Version: 0.4.1.6
-- [Privoxy](https://www.privoxy.org/ "Privoxy Homepage") Version: 3.0.28
+- [Privoxy](https://www.privoxy.org/ "Privoxy Homepage") Version: 3.0.29
 
 Healthcheck & Configs
 -----

@@ -16,9 +16,9 @@ Versions in the latest image
 
 Healthcheck & Configs
 -----
-The docker container has a working healtcheck built in.
+The docker container has a working healthcheck built in.
 
-To determine correct function, it verifies access to some *.onion adresses.
+To determine the correct function, it verifies access to some *.onion addresses.
 
 **torrc-configuration:**
 ```

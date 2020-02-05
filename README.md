@@ -1,4 +1,4 @@
-![TOR Privoxy Logo](https://www.foxplex.com/components/uploads/VIGfbsoj-tor_proxy_raspberry_splash.png)
+![TOR Privoxy Logo](https://i.imgur.com/rGdIzv9.png)
 
 **TOR and Privoxy in docker container**
 ===

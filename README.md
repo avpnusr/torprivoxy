@@ -7,7 +7,7 @@ This repository has multi architecture support and is regularly updated.
 Container is built for amd64, arm and arm64.
 
 Kudos to [rdsubhas](https://hub.docker.com/r/rdsubhas/tor-privoxy-alpine).   
-I used the tini and run based startup for services from his container.
+I used the tini and run based startup-scripts for services from his container.
 
 Versions in the latest image
 -----

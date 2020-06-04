@@ -26,6 +26,6 @@ jobs:
       - name: build the image
         run: |
           docker buildx build --push \
-          --tag avpnusr/multiarch:latest \
+          --tag avpnusr/torbrowser:latest \
             --platform linux/amd64,linux/arm/v7,linux/arm64 \
             --file ./Dockerfile .

@@ -1,4 +1,4 @@
-name: Weekly Build
+name: TorPrivoxy Docker Build
 
 on:
    schedule:

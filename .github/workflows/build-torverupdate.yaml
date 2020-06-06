@@ -1,4 +1,4 @@
-name: Check TOR-Version in APK Repo
+name: TorPrivoxy Docker Build
 
 on:
    push:

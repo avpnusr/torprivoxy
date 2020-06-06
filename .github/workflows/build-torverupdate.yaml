@@ -1,8 +1,8 @@
 name: Check TOR-Version in APK Repo
 
 on:
-   schedule:
-    - cron: '12 6 * * *'
+   push:
+    - branch: master
     
 jobs:
 
@@ -11,16 +11,6 @@ jobs:
     steps:
     - name: checkout code
       uses: actions/checkout@v2
-    - name: check for updated tor version 
-      run: |
-        APKSCRAPE=$(curl -s https://pkgs.alpinelinux.org/package/edge/community/armhf/tor)
-        ONLINETORVER=$(echo $APKSCRAPE | grep flag | awk -F "tor&#x2F;" '{print $2}' | awk -F '">' '{print $1}')
-        REPOTORVER=$(cat $GITHUB_WORKSPACE/README.md  | grep "TOR.*Version" | awk -F 'Version: ' '{print $2}')
-        if [ "$REPOTORVER" == "$ONLINETORVER" ]; then
-        echo This is no real error ...
-        echo No action required, TOR version is identical and exits with error 78, on purpose
-        exit 78
-        fi
     - name: install buildx
       id: buildx
       uses: crazy-max/ghaction-docker-buildx@v2

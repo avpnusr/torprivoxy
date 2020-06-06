@@ -9,6 +9,10 @@ Container is built for amd64, arm and arm64.
 Kudos to [rdsubhas](https://hub.docker.com/r/rdsubhas/tor-privoxy-alpine).   
 I used the tini and run based startup-scripts for services from his container.
 
+Status from last build
+-----
+![Check TOR-Version in APK Repo](https://github.com/avpnusr/torprivoxy/workflows/Check%20TOR-Version%20in%20APK%20Repo/badge.svg?branch=master)
+
 Versions in the latest image
 -----
 - [TOR](https://www.torproject.org/ "TOR Project Homepage") Version: 0.4.3.5-r0

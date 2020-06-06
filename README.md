@@ -11,7 +11,7 @@ I used the tini and run based startup-scripts for services from his container.
 
 Status from last build
 -----
-![Check TOR-Version in APK Repo](https://github.com/avpnusr/torprivoxy/workflows/Check%20TOR-Version%20in%20APK%20Repo/badge.svg?branch=master)
+![TorPrivoxy Docker Build](https://github.com/avpnusr/torprivoxy/workflows/TorPrivoxy%20Docker%20Build/badge.svg)
 
 Versions in the latest image
 -----

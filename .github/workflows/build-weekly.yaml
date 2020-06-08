@@ -2,7 +2,7 @@ name: TorPrivoxy Docker Build
 
 on:
    schedule:
-    - cron: '12 2 6 * *'
+    - cron: '12 2 * * 6'
     
 jobs:
 

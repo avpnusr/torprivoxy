@@ -1,5 +1,5 @@
 FROM alpine:edge
-MAINTAINER avpnusr
+LABEL maintainer="avpnusr"
 
 COPY service /etc/service/
 

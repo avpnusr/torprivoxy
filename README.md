@@ -15,7 +15,7 @@ Status from last build
 
 Versions in the latest image
 -----
-- [TOR](https://www.torproject.org/ "TOR Project Homepage") Version: tor-0.4.3.5-r0.log
+- [TOR](https://www.torproject.org/ "TOR Project Homepage") Version: 0.4.3.6-r0
 - [Privoxy](https://www.privoxy.org/ "Privoxy Homepage") Version: 3.0.28
 
 Healthcheck & Configs

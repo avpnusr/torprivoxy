@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:latest
 LABEL maintainer="avpnusr"
 
 COPY service /etc/service/

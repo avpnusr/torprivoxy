@@ -5,7 +5,7 @@ COPY service /etc/service/
 
 EXPOSE 8118 9050
 
-RUN apk update --no-cache && apk upgrade -a --no-cache && apk --update --no-cache add privoxy tor runit tini wget --repository http://dl-3.alpinelinux.org/alpine/edge/community/ \
+RUN apk update --no-cache && apk upgrade -a --no-cache && apk --update --no-cache add privoxy tor runit tini wget \
 && addgroup -S tordocker \
 && adduser -S tordocker -G tordocker \
 && chown tordocker:tordocker /etc/service \

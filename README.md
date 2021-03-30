@@ -20,7 +20,7 @@ Versions in the latest image
 
 Healthcheck & Configs
 -----
-The docker container has a working healthcheck built in.
+The docker container has a working health-check built in.
 
 To determine the correct function, it verifies access to the *.onion address from [DuckDuckGo](https://duckduckgo.com/ "DuckDuckGo Homepage").
 

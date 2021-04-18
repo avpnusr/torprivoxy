@@ -1,3 +1,5 @@
+variables:
+  DOCKER_REPO: "avpnusr/torprivoxy"
 build:
   image: avpnusr/docker-buildx-qemu
   stage: build
@@ -6,10 +8,11 @@ build:
   before_script:
     - echo $DOCKER_TOKEN | docker login -u $DOCKER_USERNAME --password-stdin
     - XNAME=$RANDOM
+    - BDATE=$(date +%d-%m-%Y)
     - docker buildx create --name buildx-$XNAME --driver docker-container --use
     - docker buildx inspect --bootstrap
 
   script: 
-    - docker buildx build --push --tag avpnusr/torprivoxy:latest --platform linux/amd64,linux/arm/v7,linux/arm/v6,linux/arm64 --file ./Dockerfile .
+    - docker buildx build --push --tag $DOCKER_REPO:latest --tag $DOCKER_REPO:$BDATE --platform linux/amd64,linux/arm/v7,linux/arm/v6,linux/arm64 --file ./Dockerfile .
     - docker buildx rm buildx-$XNAME
     - rm -f ${HOME}/.docker/config.json

@@ -1,15 +1,13 @@
+image: docker:stable
+
 variables:
   DOCKER_HOST: tcp://docker:2375/
-build:
-  image: jonoh/docker-buildx-qemu
-  stage: build
-  services:
-    - docker:dind
-  before_script:
-    - echo $DOCKER_TOKEN | docker login -u $DOCKER_USERNAME --password-stdin
-    - docker buildx create --driver docker-container --use
-    - docker buildx inspect --bootstrap
+  DOCKER_DRIVER: overlay2
 
-  script: 
-    - update-bifmts --enable
-    - docker buildx build --push --tag avpnusr/torprivoxy:latest --platform linux/amd64,linux/arm/v7,linux/arm/v6,linux/arm64 --file ./Dockerfile .
+services:
+  - docker:dind
+
+build:
+  stage: build
+  script:
+    - docker version

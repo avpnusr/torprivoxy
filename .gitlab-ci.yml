@@ -1,5 +1,5 @@
 build:
-  image: jonoh/docker-buildx-qemu
+  image: avpnusr/docker-buildx-qemu
   stage: build
   services:
     - docker:dind

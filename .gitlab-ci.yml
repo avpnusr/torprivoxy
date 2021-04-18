@@ -1,7 +1,8 @@
+image: jdrouet/docker-with-buildx:stable
 variables:
   DOCKER_REPO: "avpnusr/torprivoxy"
 build:
-  image: avpnusr/docker-buildx-qemu
+#  image: avpnusr/docker-buildx-qemu
   stage: build
   services:
     - docker:dind

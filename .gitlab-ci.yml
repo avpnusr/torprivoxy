@@ -1,9 +1,14 @@
-image: docker:stable
-
-services:
-  - docker:dind
-
 build:
+  image: jonoh/docker-buildx-qemu
   stage: build
-  script:
-    - docker version
+  services:
+    - docker:dind
+  before_script:
+    - echo $DOCKER_TOKEN | docker login -u $DOCKER_USERNAME --password-stdin
+    - docker buildx create --driver docker-container --use
+    - docker buildx inspect --bootstrap
+
+  script: 
+    - update-bifmts --enable
+    - docker buildx build --push --tag avpnusr/torprivoxy:latest --platform linux/amd64,linux/arm/v7,linux/arm/v6,linux/arm64 --file ./Dockerfile .
+

@@ -1,6 +1,5 @@
 variables:
   DOCKER_REPO: "avpnusr/torprivoxy"
-  DOCKER_HOST: tcp://docker:2376
 build:
   image: avpnusr/docker-buildx-qemu
   stage: build

@@ -4,7 +4,7 @@ build:
   services:
     - docker:dind
   before_script:
-    - echo '${{ DOCKER_TOKEN }}' | docker login -u '${{ DOCKER_USERNAME }}' --password-stdin
+    - echo '${{ DOCKER_PASSWORD }}' | docker login -u '${{ DOCKER_USERNAME }}' --password-stdin
     - docker buildx create --drive docker-container --use
     - docker buildx inspect --bootstrap
 

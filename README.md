@@ -1,4 +1,4 @@
-![TOR Privoxy Logo](https://i.imgur.com/rGdIzv9.png)
+![TOR Privoxy Logo](./img/repo.png)
 
 **TOR and Privoxy in docker container**
 ===

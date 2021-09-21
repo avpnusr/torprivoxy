@@ -13,12 +13,12 @@ jobs:
       uses: actions/checkout@v2.3.4
     - name: setup qemu
       id: qemu
-      uses: docker/setup-qemu-action@v1.1.0
+      uses: docker/setup-qemu-action@v1.2.0
       with:
           platforms: all
     - name: install buildx
       id: buildx
-      uses: docker/setup-buildx-action@v1.5.0
+      uses: docker/setup-buildx-action@v1.6.0
       with:
        version: latest
     - name: login to docker hub

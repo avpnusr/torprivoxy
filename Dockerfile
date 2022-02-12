@@ -12,7 +12,7 @@ RUN apk update --no-cache && apk upgrade -a --no-cache && apk --update --no-cach
 && chown -R tordocker:tordocker /etc/service/*
 
 HEALTHCHECK --interval=120s --timeout=15s --start-period=120s --retries=2 \
-            CMD wget --no-check-certificate -e use_proxy=yes -e https_proxy=127.0.0.1:8118 --quiet --spider 'https://3g2upl4pq6kufc4m.onion' && echo "HealthCheck succeeded..." || exit 1
+            CMD wget --no-check-certificate -e use_proxy=yes -e https_proxy=127.0.0.1:8118 --quiet --spider 'https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/' && echo "HealthCheck succeeded..." || exit 1
 
 USER tordocker
 

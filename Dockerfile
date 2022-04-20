@@ -5,7 +5,7 @@ COPY service /etc/service/
 
 EXPOSE 8118 9050
 
-RUN apk update --no-cache && apk upgrade -a --no-cache && apk --update --no-cache add privoxy tor runit tini wget \
+RUN apk update --no-cache && apk upgrade -a --no-cache && apk --update --no-cache add privoxy tor runit tini curl \
 && addgroup -S tordocker \
 && adduser -S tordocker -G tordocker \
 && chown tordocker:tordocker /etc/service \

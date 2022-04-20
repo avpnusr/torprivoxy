@@ -6,6 +6,8 @@
 This repository has multi architecture support and is regularly updated.    
 Container is built for amd64, arm and arm64.
 
+**Important:** Got rid of the old alpine version 3.12 - this could require action, if you use armhf architecture (Raspberry Pi i.e.) with older versions of docker. Please find information about this in the [alpine wiki](https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.13.0#time64_requirements)
+
 Kudos to [rdsubhas](https://hub.docker.com/r/rdsubhas/tor-privoxy-alpine).   
 I used the tini and run based startup-scripts for services from his container.
 

@@ -4,7 +4,7 @@ build:
   image: avpnusr/docker-buildx-qemu
   stage: build
   services:
-    - docker:dind
+    - docker:19.03.9-dind
   before_script:
     - echo $DOCKER_TOKEN | docker login -u $DOCKER_USERNAME --password-stdin
     - XNAME=$RANDOM

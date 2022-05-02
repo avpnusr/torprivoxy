@@ -1,3 +1,4 @@
 SOCKSPort 0.0.0.0:9050
 ExitPolicy reject *:*
 BridgeRelay 0
+ClientTransportPlugin obfs4 exec /usr/local/bin/obfs4proxy

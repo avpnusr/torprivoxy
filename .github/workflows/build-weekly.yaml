@@ -28,9 +28,8 @@ jobs:
         BDATE=$(date +%d-%m-%Y) && docker buildx build --push \
         --tag avpnusr/torprivoxy:latest --tag avpnusr/torprivoxy:$BDATE \
         --platform linux/amd64,linux/arm/v7,linux/arm/v6,linux/arm64 \
-        --file ./Dockerfile .
-      run: |
-        BDATE=$(date +%d-%m-%Y) && docker buildx build --push \
+        --file ./Dockerfile . \
+        && docker buildx build --push \
         --tag avpnusr/torprivoxy:latest-debian --tag avpnusr/torprivoxy:$BDATE-debian \
         --platform linux/amd64,linux/arm/v7,linux/arm/v6,linux/arm64 \
         --file ./Dockerfile.debian .

@@ -1,0 +1,22 @@
+FROM debian:stable-slim
+LABEL maintainer="avpnusr"
+
+COPY service /etc/service/
+
+EXPOSE 8118 9050
+
+RUN apt update -y && apt upgrade -y && apt -y install privoxy obfs4proxy tor torsocks runit tini curl --no-install-recommends \
+&& addgroup --system tordocker \
+&& adduser --system tordocker --ingroup tordocker \
+&& chown tordocker:tordocker /etc/service \
+&& chown -R tordocker:tordocker /etc/service/* \
+&& apt autoremove -y && apt-get clean \
+&& rm -rf /var/lib/apt/lists/*
+
+HEALTHCHECK --interval=120s --timeout=15s --start-period=120s --retries=2 \
+            CMD curl --fail -x http://127.0.0.1:8118 -s 'https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion' -k > /dev/null && echo "HealthCheck succeeded..." || exit 1
+
+USER tordocker
+
+ENTRYPOINT ["tini", "--"]
+CMD ["runsvdir", "/etc/service"]

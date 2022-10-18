@@ -4,7 +4,7 @@
 ===
 
 This repository has multi architecture support and is regularly updated.    
-Container is built for amd64, arm and arm64.
+Container is built for amd64, arm and arm64 on alpine and debian.
 
 The container is available with alpine base image **avpnusr/torprivoxy:latest**    
 The container is also available with debian base image **avpnusr/torprivoxy:latest-debian**
@@ -20,7 +20,7 @@ Status from last build
 
 Versions in the latest image
 -----
-- [TOR](https://www.torproject.org/ "TOR Project Homepage") Version: 0.4.6.9
+- [TOR](https://www.torproject.org/ "TOR Project Homepage") Version: 0.4.7.10
 - [Privoxy](https://www.privoxy.org/ "Privoxy Homepage") Version: 3.0.33
 
 Healthcheck & Configs

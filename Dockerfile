@@ -19,7 +19,7 @@ ADD --link service /etc/service/
 
 EXPOSE 8118 9050
 
-RUN apk update --no-cache && apk upgrade -a --no-cache && apk --update --no-cache add privoxy runit tor torsocks tini curl \
+RUN apk update --no-cache && apk upgrade -a --no-cache && apk --update --no-cache add privoxy torsocks runit tor torsocks tini curl \
 && addgroup -S tordocker \
 && adduser -S tordocker -G tordocker \
 && chown tordocker:tordocker /etc/service \

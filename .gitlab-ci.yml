@@ -1,10 +1,10 @@
+image: avpnusr/docker-buildx-qemu
+
 variables:
   DOCKER_REPO: "avpnusr/torprivoxy"
+
 build:
-  image: avpnusr/docker-buildx-qemu
   stage: build
-  services:
-    - docker:dind
   before_script:
     - docker run -d --rm --privileged tonistiigi/binfmt --install all
     - echo $DOCKER_TOKEN | docker login -u $DOCKER_USERNAME --password-stdin

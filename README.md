@@ -20,7 +20,7 @@ Status from last build
 
 Versions in the latest image
 -----
-- [TOR](https://www.torproject.org/ "TOR Project Homepage") Version: 0.4.7.12
+- [TOR](https://www.torproject.org/ "TOR Project Homepage") Version: 0.4.7.13
 - [Privoxy](https://www.privoxy.org/ "Privoxy Homepage") Version: 3.0.33
 
 Healthcheck & Configs

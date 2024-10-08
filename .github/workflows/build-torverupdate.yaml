@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: checkout code
-      uses: actions/checkout@v4.1.7
+      uses: actions/checkout@v4.2.1
     - name: setup qemu
       id: qemu
       uses: docker/setup-qemu-action@v3.2.0

@@ -9,7 +9,7 @@ jobs:
     steps:
       - run: | 
           echo "192.168.70.200 git.khmls.net" >> /etc/hosts
-          echo "::set-output name=date::$(date +'%d-%m-%Y')"
+          echo "BDATE=$(date +%d-%m-%Y)" >> $GITHUB_ENV 
       -
         name: Checkout
         uses: actions/checkout@v4
@@ -33,7 +33,7 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: avpnusr/torprivoxy:latest , avpnusr/torprivoxy:${{ steps.date.outputs.date }}
+          tags: avpnusr/torprivoxy:latest , avpnusr/torprivoxy:${{ env.BDATE }}
       -
         name: Build and push debian
         uses: docker/build-push-action@v6
@@ -42,4 +42,4 @@ jobs:
           context: .
           file: Dockerfile.debian
           push: true
-          tags: avpnusr/torprivoxy:latest-debian , avpnusr/torprivoxy:${{ steps.date.outputs.date }}-debian
+          tags: avpnusr/torprivoxy:latest-debian , avpnusr/torprivoxy:${{ env.BDATE }}-debian

@@ -1,0 +1,45 @@
+name: build
+
+on:
+  push:
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - run: | 
+          echo "192.168.70.200 git.khmls.net" >> /etc/hosts
+          BDATE=$(date +%d-%m-%Y)
+      -
+        name: Checkout
+        uses: actions/checkout@v4
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      -
+        name: Build and push alpine
+        uses: docker/build-push-action@v6
+        with:
+          platforms: linux/amd64,linux/arm/v7,linux/arm/v6,linux/arm64
+          context: .
+          file: Dockerfile
+          push: true
+          tags: avpnusr/torprivoxy:latest , avpnusr/torprivoxy:$BDATE
+      -
+        name: Build and push debian
+        uses: docker/build-push-action@v6
+        with:
+          platforms: linux/amd64,linux/arm/v7,linux/arm/v6,linux/arm64
+          context: .
+          file: Dockerfile.debian
+          push: true
+          tags: avpnusr/torprivoxy:latest-debian , avpnusr/torprivoxy:$BDATE-debian

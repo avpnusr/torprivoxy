@@ -33,7 +33,7 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: avpnusr/torprivoxy:latest , avpnusr/torprivoxy:$BDATE
+          tags: avpnusr/torprivoxy:latest , avpnusr/torprivoxy:$(date +%d-%m-%Y)
       -
         name: Build and push debian
         uses: docker/build-push-action@v6
@@ -42,4 +42,4 @@ jobs:
           context: .
           file: Dockerfile.debian
           push: true
-          tags: avpnusr/torprivoxy:latest-debian , avpnusr/torprivoxy:$BDATE-debian
+          tags: avpnusr/torprivoxy:latest-debian , avpnusr/torprivoxy:$(date +%d-%m-%Y)-debian

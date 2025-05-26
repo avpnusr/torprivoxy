@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:labs
-ARG GO_VERSION="1.20"
+ARG GO_VERSION="1.24"
 FROM --platform=$BUILDPLATFORM golang:${GO_VERSION}-alpine AS obfs4proxy
 ARG TARGETPLATFORM
 ARG TARGETOS

@@ -20,6 +20,13 @@ jobs:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
+        name: Login to Gitea Registry
+        uses: docker/login-action@v3
+        with:
+          registry: git.khmls.net
+          username: ${{ vars.GITEAREG_USERNAME }}
+          password: ${{ secrets.DOCKER_GITEA_REGISTRY_TOKEN }}
+      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v3
         with:
@@ -31,17 +38,25 @@ jobs:
         name: Build and push alpine
         uses: docker/build-push-action@v6
         with:
+          add-hosts: git.khmls.net:192.168.70.200
           platforms: linux/amd64,linux/arm/v7,linux/arm/v6,linux/arm64
           context: .
           file: Dockerfile
           push: true
-          tags: avpnusr/torprivoxy:latest , avpnusr/torprivoxy:${{ env.BDATE }}
+          tags: |
+            avpnusr/torprivoxy:latest
+            avpnusr/torprivoxy:${{ env.BDATE }}
+            git.khmls.net/klein/torprivoxy:latest
       -
         name: Build and push debian
         uses: docker/build-push-action@v6
         with:
+          add-hosts: git.khmls.net:192.168.70.200
           platforms: linux/amd64,linux/arm/v7,linux/arm/v6,linux/arm64
           context: .
           file: Dockerfile.debian
           push: true
-          tags: avpnusr/torprivoxy:latest-debian , avpnusr/torprivoxy:${{ env.BDATE }}-debian
+          tags: |
+            avpnusr/torprivoxy:latest-debian
+            avpnusr/torprivoxy:${{ env.BDATE }}-debian
+            git.khmls.net/klein/torprivoxy:latest-debian

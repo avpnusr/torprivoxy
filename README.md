@@ -16,7 +16,7 @@ I used the tini and run based startup-scripts for services from his container.
 
 Status from last build
 -----
-![TorPrivoxy Docker Build](https://github.com/avpnusr/torprivoxy/workflows/TorPrivoxy%20Docker%20Build/badge.svg)
+![TorPrivoxy Docker Build](https://git.khmls.net/klein/torprivoxy/actions/workflows/build.yml/badge.svg?branch=master)
 
 Versions in the latest image
 -----

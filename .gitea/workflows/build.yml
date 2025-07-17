@@ -49,7 +49,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           add-hosts: git.khmls.net:192.168.70.200
-          platforms: linux/amd64,linux/arm/v7,linux/arm/v6,linux/arm64
+          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
           context: .
           file: Dockerfile
           push: true
@@ -62,7 +62,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           add-hosts: git.khmls.net:192.168.70.200
-          platforms: linux/amd64,linux/arm/v7,linux/arm/v6,linux/arm64
+          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
           context: .
           file: Dockerfile.debian
           push: true

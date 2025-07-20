@@ -1,10 +1,9 @@
 # syntax=docker/dockerfile:labs
 ARG GO_VERSION="1.24"
 FROM --platform=$BUILDPLATFORM golang:${GO_VERSION}-alpine AS obfs4proxy
-ARG TARGETPLATFORM
-ARG TARGETOS
-ARG TARGETARCH
-
+ARG TARGETPLATFORM TARGETOS TARGETARCH TARGETVARIANT
+RUN CPUARCH=${TARGETARCH}${TARGETVARIANT} \
+&& if [ $CPUARCH == "armv6" ]; then export QEMU_CPU="arm1176"; fi 
 ENV GOOS=${TARGETOS}
 ENV GOARCH=${TARGETARCH}
 ADD https://github.com/Yawning/obfs4.git /app
@@ -19,7 +18,9 @@ ADD --link service /etc/service/
 
 EXPOSE 8118 9050
 
-RUN apk update --no-cache && apk upgrade -a --no-cache && apk --update --no-cache add privoxy runit tor torsocks tini curl \
+RUN CPUARCH=${TARGETARCH}${TARGETVARIANT} \
+&& if [ $CPUARCH == "armv6" ]; then export QEMU_CPU="arm1176"; fi \
+&& apk update --no-cache && apk upgrade -a --no-cache && apk --update --no-cache add privoxy runit tor torsocks tini curl \
 && addgroup -S tordocker \
 && adduser -S tordocker -G tordocker \
 && chown tordocker:tordocker /etc/service \

@@ -1,12 +1,15 @@
 # syntax=docker/dockerfile:labs
 FROM debian:stable-slim
 LABEL maintainer="avpnusr"
+ARG TARGETARCH TARGETVARIANT
 
 ADD --link service /etc/service/
 
 EXPOSE 8118 9050
 
-RUN apt update -y && apt upgrade -y && apt -y install privoxy obfs4proxy tor torsocks runit tini curl --no-install-recommends \
+RUN CPUARCH=${TARGETARCH}${TARGETVARIANT} \
+&& if [ $CPUARCH == "armv6" ]; then export QEMU_CPU="arm1176"; fi \
+&& apt update -y && apt upgrade -y && apt -y install privoxy obfs4proxy tor torsocks runit tini curl --no-install-recommends \
 && addgroup --system tordocker \
 && adduser --system tordocker --ingroup tordocker \
 && chown tordocker:tordocker /etc/service \

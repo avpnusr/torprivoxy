@@ -1,21 +1,26 @@
 name: TorPrivoxy Docker Build
 
 on:
+   push:
+     branches: 
+       - master 
+     paths-ignore:
+       - '.github/workflows/build.yml'
+       - 'README.md'
    schedule:
     - cron: '12 2 * * 6'
-    
-jobs:
 
+jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - name: define bdate
+      run: echo "BDATE=$(date +%d-%m-%Y)" >> $GITHUB_ENV
     - name: checkout code
       uses: actions/checkout@v4
     - name: setup qemu
       id: qemu
       uses: docker/setup-qemu-action@v3
-      with:
-          platforms: all
     - name: install buildx
       id: buildx
       uses: docker/setup-buildx-action@v3
@@ -26,16 +31,24 @@ jobs:
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-    - name: define bdate
-      run: echo "BDATE=$(date +%d-%m-%Y)" >> $GITHUB_ENV
+    -
+      name: Login to GitHub Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build and push
       uses: docker/build-push-action@v6
       with:
         context: .
         push: true
-        platforms: linux/amd64,linux/arm/v7,linux/arm/v6,linux/arm64
+        platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
         tags: |
-          ${{ secrets.DOCKER_USERNAME }}/torprivoxy:${{ env.BDATE }}
+          avpnusr/torprivoxy:latest
+          avpnusr/torprivoxy:${{ env.BDATE }}
+          ghcr.io/avpnusr/torprivoxy:latest
+          ghcr.io/avpnusr/torprivoxy:${{ env.BDATE }}
         file: Dockerfile
         cache-from: type=gha
         cache-to: type=gha,mode=max
@@ -46,7 +59,10 @@ jobs:
         push: true
         platforms: linux/amd64,linux/arm/v7,linux/arm/v6,linux/arm64
         tags: |
-          ${{ secrets.DOCKER_USERNAME }}/torprivoxy:${{ env.BDATE }}-debian
+          avpnusr/torprivoxy:latest-debian
+          avpnusr/torprivoxy:debian-${{ env.BDATE }}
+          ghcr.io/avpnusr/torprivoxy:latest-debian
+          ghcr.io/avpnusr/torprivoxy:debian-${{ env.BDATE }}
         file: Dockerfile.debian
         cache-from: type=gha
         cache-to: type=gha,mode=max

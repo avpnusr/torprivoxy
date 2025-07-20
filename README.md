@@ -4,10 +4,10 @@
 ===
 
 This repository has multi architecture support and is regularly updated.    
-Container is built for amd64, arm and arm64.
+Container is built for amd64, arm64, armv7 and armv6.
 
-The container is available with alpine base image **avpnusr/torprivoxy:latest**    
-The container is also available with debian base image **avpnusr/torprivoxy:latest-debian**
+The container is available with alpine base image **ghcr.io/avpnusr/torprivoxy:latest**    
+The container is also available with debian base image **ghcr.io/avpnusr/torprivoxy:latest-debian**
 
 **Important:** Got rid of the old alpine version 3.12 - this could require action, if you use armhf architecture (Raspberry Pi i.e.) with older versions of docker. Please find information about this in the [alpine wiki](https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.13.0#time64_requirements)
 
@@ -20,8 +20,8 @@ Status from last build
 
 Versions in the latest image
 -----
-- [TOR](https://www.torproject.org/ "TOR Project Homepage") Version: 0.4.7.13
-- [Privoxy](https://www.privoxy.org/ "Privoxy Homepage") Version: 3.0.34
+- [TOR](https://www.torproject.org/ "TOR Project Homepage") Version: 0.4.8.17
+- [Privoxy](https://www.privoxy.org/ "Privoxy Homepage") Version: 4.0.0
 
 Healthcheck & Configs
 -----
@@ -56,7 +56,7 @@ docker run -d \
   -p 9050:9050 \
   --user=[UID:GID] \
   --name torprivoxy \
-  --restart=unless-stopped avpnusr/torprivoxy
+  --restart=unless-stopped ghcr.io/avpnusr/torprivoxy
 ```
 
 **debian version**
@@ -66,5 +66,5 @@ docker run -d \
   -p 9050:9050 \
   --user=[UID:GID] \
   --name torprivoxy \
-  --restart=unless-stopped avpnusr/torprivoxy:latest-debian
+  --restart=unless-stopped ghcr.io/avpnusr/torprivoxy:latest-debian
 ```

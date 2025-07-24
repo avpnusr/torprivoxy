@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:labs
-FROM debian:stable-slim
+FROM debian:trixie-slim
 LABEL maintainer="avpnusr"
 ARG TARGETARCH TARGETVARIANT
 
@@ -15,7 +15,7 @@ RUN CPUARCH=${TARGETARCH}${TARGETVARIANT} \
 && chown tordocker:tordocker /etc/service \
 && chown -R tordocker:tordocker /etc/service/* \
 && apt autoremove -y && apt-get clean \
-&& rm -rf /var/lib/apt/lists/*
+&& rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* 
 
 
 COPY <<EOT /docker-entrypoint.sh

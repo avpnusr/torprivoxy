@@ -29,13 +29,14 @@ The docker container has a working health-check built in.
 
 To determine the correct function, it verifies access to the *.onion address from [DuckDuckGo](https://duckduckgo.com/ "DuckDuckGo Homepage").
 
-**torrc-configuration:**
+**torrc-configuration:**  
+
+I know the TOR-Project is in need for bridge relays, but considering, not every user from the container is familiar with the impacts, I decided to disable the bridge relay in the container by default.
 ```
 SOCKSPort 0.0.0.0:9050
 ExitPolicy reject *:*
 BridgeRelay 0
 ```
-I know the TOR-Project is in need for bridge relays, but considering, not every user from the container is familiar with the impacts, I decided to disable the bridge relay in the container by default.
 
 **privoxy-configuration:**
 ```

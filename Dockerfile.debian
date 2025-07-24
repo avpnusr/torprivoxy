@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:labs
-FROM debian:trixie-slim
+FROM debian:stable-slim
 LABEL maintainer="avpnusr"
 ARG TARGETARCH TARGETVARIANT DEBIAN_FRONTEND=noninteractive
 

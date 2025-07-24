@@ -30,7 +30,7 @@ COPY --link --from=obfs4proxy /app/obfs4proxy/obfs4proxy /usr/bin/obfs4proxy
 
 COPY <<EOT /docker-entrypoint.sh
 #!/bin/sh
-IFS=$'\n\t'
+IFS=$'\\n\\t'
 cp -f /etc/service/tor/torrc.base /etc/service/tor/torrc
 if [ -n "\$BRIDGE" ]; then
   echo "UseBridges 1" >> /etc/service/tor/torrc

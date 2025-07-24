@@ -20,7 +20,7 @@ RUN CPUARCH=${TARGETARCH}${TARGETVARIANT} \
 
 COPY <<EOT /docker-entrypoint.sh
 #!/bin/sh
-IFS=$'\n\t'
+IFS=$'\\n\\t'
 cp -f /etc/service/tor/torrc.base /etc/service/tor/torrc
 if [ -n "\$BRIDGE" ]; then
   echo "UseBridges 1" >> /etc/service/tor/torrc

@@ -51,7 +51,7 @@ On port **[8118]**, the container offers a privoxy HTTP-Proxy forwarded to local
 On port **[9050]**, the container offers the TOR SOCKS5 proxy
 
 **docker compose**
-
+-----
 You can add multiple lines under "BRIDGE" environment variable, all bridges will be added to torrc file.
 
 ```
@@ -70,6 +70,7 @@ services:
 ```
 
 **alpine version**
+-----
 ```
 docker run -d \
   -p 8118:8118 \
@@ -80,6 +81,7 @@ docker run -d \
 ```
 
 **debian version**
+------
 ```
 docker run -d \
   -p 8118:8118 \

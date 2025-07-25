@@ -12,3 +12,4 @@ services:
         - 8118:8118
         - 9050:9050
       image: ghcr.io/avpnusr/torprivoxy:latest
+# or  image: ghcr.io/avpnusr/torprivoxy:latest-debian

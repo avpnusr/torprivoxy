@@ -1,0 +1,14 @@
+name: torprivoxy
+
+services:
+    torprivoxy:
+      container_name: torprivoxy
+      environment:
+        TZ: Europe/Berlin # customize to your own
+        BRIDGE: |- 
+          obfs4 <ip>:<port> <secret> cert=<cert> iat-mode=0
+          obfs4 <ip>:<port> <secret> cert=<cert> iat-mode=0
+      ports:
+        - 8118:8118
+        - 9050:9050
+      image: ghcr.io/avpnusr/torprivoxy:latest

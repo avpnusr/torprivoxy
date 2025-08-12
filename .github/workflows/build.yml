@@ -18,7 +18,7 @@ jobs:
     - name: define bdate
       run: echo "BDATE=$(date +%d-%m-%Y)" >> $GITHUB_ENV
     - name: checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
     - name: setup qemu
       id: qemu
       uses: docker/setup-qemu-action@v3

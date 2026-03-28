@@ -5,9 +5,6 @@ on:
   schedule:
     - cron: "17 2 * * 1"
 
-permissions:
-  contents: write
-
 jobs:
   delete-old-versions:
     runs-on: ubuntu-latest
@@ -18,3 +15,4 @@ jobs:
           package-type: container
           package-name: torprivoxy
           min-versions-to-keep: 4
+          token: ${{ secrets.GITHUB_TOKEN }}

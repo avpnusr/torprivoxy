@@ -14,5 +14,5 @@ jobs:
         with:
           package-type: container
           package-name: torprivoxy
-          min-versions-to-keep: 4
+          min-versions-to-keep: 6
           token: ${{ secrets.GITHUB_TOKEN }}

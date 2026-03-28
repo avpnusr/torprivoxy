@@ -1,9 +1,9 @@
 name: clean up older versions over 1 month old
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: "17 2 * * 1"
-    - workflow_dispatch:
 
 permissions:
   contents: write

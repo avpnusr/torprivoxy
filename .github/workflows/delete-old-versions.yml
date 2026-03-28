@@ -1,15 +1,19 @@
 name: clean up older versions over 1 month old
+
 on:
   schedule:
-    - cron: '17 2 * * 1' 
+    - cron: "17 2 * * 1"
+
 permissions:
-    contents: write
+  contents: write
+
 jobs:
-    delete-old-versions:
-        steps:
-            - name: Delete old versions
-                uses: actions/delete-package-versions@v5
-                with:
-                  package-type: 'container'
-                  package-name: 'torprivoxy'
-                  min-versions-top-keep: 4
+  delete-old-versions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete old versions
+        uses: actions/delete-package-versions@v5
+        with:
+          package-type: container
+          package-name: torprivoxy
+          min-versions-to-keep: 4

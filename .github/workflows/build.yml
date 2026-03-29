@@ -48,9 +48,7 @@ jobs:
         platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
         tags: |
           avpnusr/torprivoxy:latest
-          avpnusr/torprivoxy:${{ env.BDATE }}
           ghcr.io/avpnusr/torprivoxy:latest
-          ghcr.io/avpnusr/torprivoxy:${{ env.BDATE }}
         file: Dockerfile
         cache-from: type=gha
         cache-to: type=gha,mode=max
@@ -62,9 +60,7 @@ jobs:
         platforms: linux/amd64,linux/arm/v7,linux/arm/v6,linux/arm64
         tags: |
           avpnusr/torprivoxy:latest-debian
-          avpnusr/torprivoxy:debian-${{ env.BDATE }}
           ghcr.io/avpnusr/torprivoxy:latest-debian
-          ghcr.io/avpnusr/torprivoxy:debian-${{ env.BDATE }}
         file: Dockerfile.debian
         cache-from: type=gha
         cache-to: type=gha,mode=max

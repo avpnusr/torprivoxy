@@ -23,15 +23,15 @@ trap cleanup EXIT
 
 docker buildx build \\ 
     --platform=linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6 \\
-    --push -t git.khmls.net/klein/torprivoxy:latest \\
-    -f Dockerfile .
+    -t git.khmls.net/klein/torprivoxy:latest \\
+    --push -f Dockerfile .
 
 sleep 5
 
 docker buildx build \\ 
     --platform=linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6 \\
-    --push -t git.khmls.net/klein/torprivoxy:latest-debian \\
-    -f Dockerfile.debian .
+    -t git.khmls.net/klein/torprivoxy:latest-debian \\
+    --push -f Dockerfile.debian .
 
 echo "Build and push complete, deleting builder instance..."
 docker buildx rm "$BDXNAME"'''

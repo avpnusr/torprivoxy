@@ -1,70 +1,138 @@
-![TOR Privoxy Logo](./img/repo.png)
+![TOR Privoxy Logo](https://i.imgur.com/rGdIzv9.png)
 
-**TOR and Privoxy in docker container**
-===
+# torprivoxy
 
-This repository has multi architecture support and is regularly updated.    
-Container is built for amd64, arm and arm64 on alpine and debian.
+Run **Tor + Privoxy** in a single Docker container.
 
-The container is available with alpine base image **avpnusr/torprivoxy:latest**    
-The container is also available with debian base image **avpnusr/torprivoxy:latest-debian**
+- `8118/tcp` → HTTP proxy (Privoxy)
+- `9050/tcp` → SOCKS5 proxy (Tor)
 
-**Important:** Got rid of the old alpine version 3.12 - this could require action, if you use armhf architecture (Raspberry Pi i.e.) with older versions of docker. Please find information about this in the [alpine wiki](https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.13.0#time64_requirements)
+## Images
 
-Kudos to [rdsubhas](https://hub.docker.com/r/rdsubhas/tor-privoxy-alpine).   
-I used the tini and run based startup-scripts for services from his container.
+Multi-architecture images are published for:
 
-Status from last build
------
-![TorPrivoxy Docker Build](https://git.khmls.net/klein/torprivoxy/actions/workflows/build.yml/badge.svg?branch=master)
+- `amd64`
+- `arm64`
+- `armv7`
+- `armv6`
 
-Versions in the latest image
------
-- [TOR](https://www.torproject.org/ "TOR Project Homepage") Version: 0.4.8.17
-- [Privoxy](https://www.privoxy.org/ "Privoxy Homepage") Version: 4.0.0
+Tags:
 
-Healthcheck & Configs
------
-The docker container has a working health-check built in.
+- Alpine base: `ghcr.io/avpnusr/torprivoxy:latest`
+- Debian base: `ghcr.io/avpnusr/torprivoxy:latest-debian`
 
-To determine the correct function, it verifies access to the *.onion address from [DuckDuckGo](https://duckduckgo.com/ "DuckDuckGo Homepage").
+> **Note:** If you run older Docker versions on armhf/Raspberry Pi, check Alpine `time64` migration notes:
+> https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.13.0#time64_requirements
 
-**torrc-configuration:**
+Build status:
+
+![TorPrivoxy Docker Build](https://github.com/avpnusr/torprivoxy/workflows/TorPrivoxy%20Docker%20Build/badge.svg)
+
+## Quick start
+
+### Docker Compose
+
+Use the included `docker-compose.yml` or this example:
+
+```yaml
+name: torprivoxy
+
+services:
+  torprivoxy:
+    container_name: torprivoxy
+    image: ghcr.io/avpnusr/torprivoxy:latest
+    # image: ghcr.io/avpnusr/torprivoxy:latest-debian
+    environment:
+      TZ: Europe/Berlin # change to your timezone
+      BRIDGE: |- 
+        obfs4 <ip>:<port> <secret> cert=<cert> iat-mode=0
+        obfs4 <ip>:<port> <secret> cert=<cert> iat-mode=0
+    ports:
+      - 8118:8118
+      - 9050:9050
 ```
+
+Start it:
+
+```bash
+docker compose up -d
+```
+
+### Docker run
+
+Alpine image:
+
+```bash
+docker run -d \
+  -p 8118:8118 \
+  -p 9050:9050 \
+  --user [UID:GID] \
+  --name torprivoxy \
+  --restart unless-stopped \
+  ghcr.io/avpnusr/torprivoxy:latest
+```
+
+Debian image:
+
+```bash
+docker run -d \
+  -p 8118:8118 \
+  -p 9050:9050 \
+  --user [UID:GID] \
+  --name torprivoxy \
+  --restart unless-stopped \
+  ghcr.io/avpnusr/torprivoxy:latest-debian
+```
+
+## Configuration
+
+### Default Tor behavior
+
+Bridge relay is disabled by default:
+
+```torrc
 SOCKSPort 0.0.0.0:9050
 ExitPolicy reject *:*
 BridgeRelay 0
 ```
-I know the TOR-Project is in need for bridge relays, but considering, not every user from the container is familiar with the impacts, I decided to disable the bridge relay in the container by default.
 
-**privoxy-configuration:**
-```
+### Privoxy forwarding
+
+Privoxy listens on `8118` and forwards to Tor on `9050`:
+
+```privoxy
 listen-address 0.0.0.0:8118
 forward-socks5t / localhost:9050 .
 ```
 
-Start your container
------
-On port **[8118]**, the container offers a privoxy HTTP-Proxy forwarded to localhost:9050 SOCKS5
+### Using bridges (`BRIDGE` env)
 
-On port **[9050]**, the container offers the TOR SOCKS5 proxy
+If `BRIDGE` is set, the entrypoint appends:
 
-**alpine version**
-```
-docker run -d \
-  -p 8118:8118 \
-  -p 9050:9050 \
-  --user=[UID:GID] \
-  --name torprivoxy \
-  --restart=unless-stopped avpnusr/torprivoxy
+- `UseBridges 1`
+- `ClientTransportPlugin obfs4 exec /usr/bin/obfs4proxy`
+- one `Bridge ...` line per `BRIDGE` line
+
+Use a multiline environment value (as shown in the compose example).
+
+## Healthcheck
+
+The container includes a Docker `HEALTHCHECK` that verifies onion reachability via Privoxy by requesting DuckDuckGo’s `.onion` endpoint.
+
+## Verify it works
+
+HTTP proxy (Privoxy):
+
+```bash
+curl -x http://127.0.0.1:8118 https://check.torproject.org/
 ```
 
-**debian version**
+SOCKS5 proxy (Tor):
+
+```bash
+curl --socks5-hostname 127.0.0.1:9050 https://check.torproject.org/
 ```
-docker run -d \
-  -p 8118:8118 \
-  -p 9050:9050 \
-  --user=[UID:GID] \
-  --name torprivoxy \
-  --restart=unless-stopped avpnusr/torprivoxy:latest-debian
-```
+
+## Credits
+
+Kudos to [rdsubhas](https://hub.docker.com/r/rdsubhas/tor-privoxy-alpine) for inspiration around startup/service patterns.

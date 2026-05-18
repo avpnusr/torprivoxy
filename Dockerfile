@@ -1,4 +1,4 @@
-ARG GO_VERSION="1.24"
+ARG GO_VERSION="1.26"
 FROM --platform=$BUILDPLATFORM golang:${GO_VERSION}-alpine AS obfs4proxy
 ARG TARGETPLATFORM
 ARG TARGETOS
@@ -11,7 +11,7 @@ WORKDIR /app
 RUN --mount=type=cache,target=/go/pkg/mod --mount=type=cache,target=/root/.cache/go-build go mod download
 RUN --mount=type=cache,target=/go/pkg/mod --mount=type=cache,target=/root/.cache/go-build CGO_ENABLED=0 go build -ldflags "-s -w" -trimpath -o /app/obfs4proxy ./obfs4proxy
 
-FROM alpine:latest
+FROM alpine:3.23
 LABEL maintainer="avpnusr"
 
 ADD --link service /etc/service/

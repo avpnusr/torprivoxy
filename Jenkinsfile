@@ -4,7 +4,6 @@ pipeline {
     stage('Checkout SCM') {
       steps {
         git(url: 'https://git.khmls.net/klein/torprivoxy.git', branch: 'master', credentialsId: '84da4d3d-4d74-40d4-8ebb-234743939799')
-        dir(path: './torprivoxy')
       }
     }
 
@@ -13,6 +12,7 @@ pipeline {
         sh '''#!/usr/bin/env bash
 set -Eeuo pipefail
 
+cd torprivoxy
 
 echo "Creating buildx builder instance..."
 BDXNAME="$(docker buildx create --use)"

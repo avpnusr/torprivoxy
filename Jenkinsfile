@@ -1,6 +1,10 @@
 pipeline {
   agent any
 
+  triggers {
+    cron('0 17 * * 0')
+  }
+
   environment {
     IMAGE_GITEA = 'git.khmls.net/klein/torprivoxy'
     GITEA_HOST = 'git.khmls.net'

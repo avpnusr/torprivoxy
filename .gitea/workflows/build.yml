@@ -47,7 +47,7 @@ jobs:
               mirrors = ["192.168.70.200"]    
       -
         name: Build and push alpine
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           add-hosts: git.khmls.net:192.168.70.200
           platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
@@ -60,7 +60,7 @@ jobs:
             git.khmls.net/klein/torprivoxy:latest
       -
         name: Build and push debian
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           add-hosts: git.khmls.net:192.168.70.200
           platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6

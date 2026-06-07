@@ -19,7 +19,7 @@ ADD --link service /etc/service/
 EXPOSE 8118 9050
 
 RUN CPUARCH=${TARGETARCH}${TARGETVARIANT} \
-&& if [ $CPUARCH == "armv6" ]; then export QEMU_CPU="arm1176"; fi \
+&& if [ "$CPUARCH" == "armv6" ]; then export QEMU_CPU="arm1176"; fi \
 && apk update --no-cache && apk upgrade -a --no-cache && apk --update --no-cache add privoxy torsocks runit tor torsocks tini curl \
 && addgroup -S tordocker \
 && adduser -S tordocker -G tordocker \

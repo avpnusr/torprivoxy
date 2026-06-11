@@ -1,9 +1,15 @@
 {
-  "extends": [ "config:base"],
+  "extends": ["config:recommended"],
   "prHourlyLimit": 5,
   "packageRules": [
     {
-      "updateTypes": ["major", "minor", "patch", "pin", "digest"],
+      "matchUpdateTypes": [
+        "major",
+        "minor",
+        "patch",
+        "pin",
+        "digest"
+      ],
       "automerge": true
     }
   ]

@@ -1,16 +1,6 @@
 {
   "extends": ["config:recommended"],
   "prHourlyLimit": 5,
-  "packageRules": [
-    {
-      "matchUpdateTypes": [
-        "major",
-        "minor",
-        "patch",
-        "pin",
-        "digest"
-      ],
-      "automerge": true
-    }
-  ]
+  "automerge": false,
+  "automergeType": "branch"
 }

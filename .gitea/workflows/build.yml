@@ -6,8 +6,6 @@ on:
       - '.gitea/workflows/build.yml'
       - 'README.md'
       - 'renovate.json'
- #   schedule:
- #     - cron: "0 6 * * 6"
 
 jobs:
   docker:

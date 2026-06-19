@@ -1,6 +1,9 @@
 {
-  "extends": ["config:recommended"],
-  "prHourlyLimit": 5,
-  "automerge": false,
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":disableDependencyDashboard"
+  ],
+  "automerge": true,
   "automergeType": "branch"
 }

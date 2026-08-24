@@ -10,6 +10,16 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - dockerfile: Dockerfile
+            suffix: ""
+            cache: buildcache
+          - dockerfile: Dockerfile.debian
+            suffix: "-debian"
+            cache: buildcache-debian
     steps:
       - run: | 
           echo "192.168.70.200 git.khmls.net" >> /etc/hosts
@@ -43,30 +53,16 @@ jobs:
             [registry."git.khmls.net"]
               mirrors = ["192.168.70.200"]    
       -
-        name: Build and push alpine
+        name: Build and push (${{ matrix.dockerfile }})
         uses: docker/build-push-action@v7
         with:
           add-hosts: git.khmls.net:192.168.70.200
           platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
           context: .
-          file: Dockerfile
+          file: ${{ matrix.dockerfile }}
           push: true
-          cache-from: type=registry,ref=git.khmls.net/klein/torprivoxy:buildcache
-          cache-to: type=registry,ref=git.khmls.net/klein/torprivoxy:buildcache,mode=max
+          cache-from: type=registry,ref=git.khmls.net/klein/torprivoxy:${{ matrix.cache }}
+          cache-to: type=registry,ref=git.khmls.net/klein/torprivoxy:${{ matrix.cache }},mode=max
           tags: |
-            avpnusr/torprivoxy:latest
-            git.khmls.net/klein/torprivoxy:latest
-      -
-        name: Build and push debian
-        uses: docker/build-push-action@v7
-        with:
-          add-hosts: git.khmls.net:192.168.70.200
-          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
-          context: .
-          file: Dockerfile.debian
-          push: true
-          cache-from: type=registry,ref=git.khmls.net/klein/torprivoxy:buildcache-debian
-          cache-to: type=registry,ref=git.khmls.net/klein/torprivoxy:buildcache-debian,mode=max
-          tags: |
-            avpnusr/torprivoxy:latest-debian
-            git.khmls.net/klein/torprivoxy:latest-debian
+            avpnusr/torprivoxy:latest${{ matrix.suffix }}
+            git.khmls.net/klein/torprivoxy:latest${{ matrix.suffix }}

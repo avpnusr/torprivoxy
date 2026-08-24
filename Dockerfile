@@ -32,7 +32,8 @@ COPY <<EOT /docker-entrypoint.sh
 #!/bin/sh
 cp -f /etc/service/tor/torrc.base /etc/service/tor/torrc
 if [ -n "\$BRIDGE" ]; then
-  while read line; do echo "\${line//\\\$BRIDGE/\$BRIDGE}"; done < /etc/service/tor/torrc.bridge >> /etc/service/tor/torrc
+  cat /etc/service/tor/torrc.bridge >> /etc/service/tor/torrc
+  printf '%s\n' "\$BRIDGE" | while read -r b; do [ -n "\$b" ] && echo "Bridge \$b"; done >> /etc/service/tor/torrc
 fi
 exec "\$@"
 EOT

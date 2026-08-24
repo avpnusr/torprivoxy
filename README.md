@@ -88,7 +88,7 @@ docker run -d \
 
 ### Default Tor behavior
 
-Bridge relay is disabled by default:
+Bridge relay is disabled by default, and no pluggable transport is loaded unless `BRIDGE` is set:
 
 ```torrc
 SOCKSPort 0.0.0.0:9050

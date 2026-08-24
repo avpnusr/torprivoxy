@@ -13,7 +13,6 @@ jobs:
     steps:
       - run: | 
           echo "192.168.70.200 git.khmls.net" >> /etc/hosts
-          echo "BDATE=$(date +%d-%m-%Y)" >> $GITHUB_ENV 
       -
         name: Checkout
         uses: actions/checkout@v7
@@ -52,9 +51,10 @@ jobs:
           context: .
           file: Dockerfile
           push: true
+          cache-from: type=registry,ref=git.khmls.net/klein/torprivoxy:buildcache
+          cache-to: type=registry,ref=git.khmls.net/klein/torprivoxy:buildcache,mode=max
           tags: |
             avpnusr/torprivoxy:latest
-            avpnusr/torprivoxy:${{ env.BDATE }}
             git.khmls.net/klein/torprivoxy:latest
       -
         name: Build and push debian
@@ -65,7 +65,8 @@ jobs:
           context: .
           file: Dockerfile.debian
           push: true
+          cache-from: type=registry,ref=git.khmls.net/klein/torprivoxy:buildcache-debian
+          cache-to: type=registry,ref=git.khmls.net/klein/torprivoxy:buildcache-debian,mode=max
           tags: |
             avpnusr/torprivoxy:latest-debian
-            avpnusr/torprivoxy:${{ env.BDATE }}-debian
             git.khmls.net/klein/torprivoxy:latest-debian

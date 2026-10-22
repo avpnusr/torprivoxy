@@ -6,7 +6,8 @@ ARG TARGETARCH
 
 ENV GOOS=${TARGETOS}
 ENV GOARCH=${TARGETARCH}
-ADD https://github.com/Yawning/obfs4.git /app
+# obfs4proxy-0.0.14 release commit — pinned so builds are reproducible
+ADD https://github.com/Yawning/obfs4.git#336a71d6e4cfd2d33e9c57797828007ad74975e9 /app
 WORKDIR /app
 RUN --mount=type=cache,target=/go/pkg/mod --mount=type=cache,target=/root/.cache/go-build go mod download
 RUN --mount=type=cache,target=/go/pkg/mod --mount=type=cache,target=/root/.cache/go-build CGO_ENABLED=0 go build -ldflags "-s -w" -trimpath -o /app/obfs4proxy ./obfs4proxy

@@ -1,2 +1,2 @@
 #!/bin/sh
-privoxy --no-daemon
+exec privoxy --no-daemon

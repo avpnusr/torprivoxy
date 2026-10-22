@@ -2,10 +2,15 @@ name: TorPrivoxy Docker Build
 
 on:
   push:
+    branches: [master]
     paths-ignore:
       - 'README.md'
       - 'renovate.json'
   workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   docker:
